@@ -1,0 +1,95 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>orders</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button defaultHref="/home/tabs/cart"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row *ngIf="!orders">
+      <ion-col>
+        <ion-item>
+          <ion-label>
+              <ion-text>There are no orders yet.</ion-text>
+          
+              <ion-text color="primary" routerLink="/home/tabs/category">
+                <p style="cursor:pointer">See recommendations here...</p>
+              </ion-text>
+          </ion-label>
+      </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <div *ngIf="orders">
+    <!-- <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-text color="warning">Thank you for shopping with us. Welcome again.</ion-text>
+        </ion-item>
+      </ion-col>
+    </ion-row> -->
+    
+    <ion-item-divider>
+      <ion-text color="secondary">
+        <h3>Your Orders</h3></ion-text>
+    </ion-item-divider>
+
+
+    <ion-card >
+      <ion-text color="tertiary">
+      <ion-row> 
+        <ion-col class="left"size="0.5">Sl</ion-col>        
+        <ion-col class="left" size="1.5" >Date</ion-col>   
+        <ion-col class="left"size="2" >OrderNo</ion-col>     
+        
+        <ion-col class="left" size="3">Customer</ion-col>
+        <ion-col class="right">Total</ion-col>
+        <ion-col></ion-col>
+        <ion-col></ion-col>
+      </ion-row>
+    </ion-text>
+  </ion-card>
+  
+    <ion-card *ngFor="let order of orders;let i = index;">
+      <ion-row>
+          <!-- <ion-col class="center">{{detail.productId}}</ion-col> -->
+          <ion-col class="left" size="0.5">{{i+1}}</ion-col>             
+          <ion-col  class="left" size="1.5"> {{order?.orderDate | date:'mediumDate'}}</ion-col>
+          <ion-col class="left" size="2"> {{order?.orderNo}}</ion-col>          
+          <ion-col  class="left"size="3"> {{order.customer?.name}}</ion-col>    
+          <ion-col class="right">${{order.totalPrice | number:'1.2-2'}}</ion-col>
+      
+            <ion-col ion-text color="success" (click)="getOrderdetails(order.id)">Details</ion-col>  
+            <ion-col ion-text color="success" (click)="createInvoice(order.id)">Create Invoice</ion-col>  
+            <!-- <ion-col ion-text color="success" (click)="deleteOrder(order.id)">Cancel Order</ion-col>   -->
+        
+         
+      </ion-row>
+    </ion-card>
+
+    <!-- <ion-row>
+      <ion-col >
+        <ion-card  *ngFor="let order of orders">
+          
+          <ion-text color="secondary" style="cursor:pointer; float:right"  (click)="getOrderdetails(order.id)">Click to see details..</ion-text>
+          <div>Order No. :  &nbsp; {{order.orderNo}}</div>
+          <div>Total : &nbsp; {{order.subtotal}}</div>
+          <div>Placed On : &nbsp; {{order.orderDate | date:'mediumDate'}}</div>
+           
+         <p  class="ion-text-center">
+            <ion-button  color="light" (click)="deleteOrder(order.id)">Cancel Order</ion-button>
+            
+         </p>
+        </ion-card>
+      </ion-col>
+    </ion-row> -->
+  </div>
+  </ion-grid>
+
+</ion-content>

@@ -1,0 +1,111 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Products</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">    
+      <ion-button>
+        <ion-icon name="mic-sharp" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<!-- <ion-header mode="ios" class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()" color="dark">
+        <ion-icon slot="icon-only" name="chevron-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Products</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content>
+   <ion-row>
+  <ion-col size="12" class="ion-no-margin ion-no-padding">
+      <ion-searchbar
+              debounce="500"
+              placeholder="Search by product name"
+              (ionChange)="searchProducts($event)"
+              (ionCancel)="cancelSearch()"
+              (ionClear)="cancelSearch()"
+              (ionInput)="searchProducts($event)">
+    </ion-searchbar>
+  </ion-col>
+</ion-row>
+
+  <div class="main_content_div">
+    <ion-row>
+      <!-- <ion-col size="3.8" [class.left]="i%2==1" [class.right]="i%2==0" *ngFor="let product of products;let i = index"> -->
+        <ion-col size="3" [class.left]="i%2==1" [class.right]="i%2==0" *ngFor="let product of products;let i = index">
+        <div class="product_box"  (click)="getProductdetails(product.id)">
+          <!-- <div class="image_box">
+            <ion-label class="best_lbl">Best Seller</ion-label>
+          </div> -->
+
+          <img src="{{baseUrl}}Content/products/{{product.thumbnailUrl}}"
+          onerror="this.onerror=null;this.src='/assets/NoImage.jpg';"/>
+          
+          <div class="detail_div">
+            <!-- <div class="like_box">
+              <ion-icon name="heart"></ion-icon>
+            </div> -->
+            <ion-label class="name_lbl">
+                       {{product.name}}
+            </ion-label>
+            
+            <div class="price_flex">
+              <div>
+                <!-- <ion-label class="old_price">$3.0</ion-label> -->
+                <ion-label class="price_lbl">${{product.price | number:'1.2-2'}} <span>/ {{product.unit.name}} </span></ion-label>
+              </div>
+              <!-- <div>
+                <ion-label class="save_lbl">Save 3%</ion-label>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>
+
+<!-- <ion-content>  
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" class="ion-no-margin ion-no-padding">
+          <ion-searchbar
+                  debounce="500"
+                  placeholder="Search by product name"
+                  (ionChange)="searchProducts($event)"
+                  (ionCancel)="cancelSearch()"
+                  (ionClear)="cancelSearch()"
+                  (ionInput)="searchProducts($event)">
+        </ion-searchbar>
+      </ion-col>
+  </ion-row>
+
+    <ion-row  *ngIf="products" [@listAnimation]="products.length" class="product-list"  >
+   
+        <ion-col size="4" *ngFor="let product of products" >  
+          
+          <img src="{{baseUrl}}Content/products/{{product.thumbnailUrl}}"
+           onerror="this.onerror=null;this.src='/assets/NoImage.jpg';" (click)="getProductdetails(product.id)"/>
+          <p>{{product.name}}</p>
+          <span class="lineThrough">{{20 + product.price | currency:'SGD'}}</span> &nbsp;
+          <span>{{product.price | currency:'SGD'}}</span>
+        </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content
+            loadingSpinner="bubbles"
+            loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+</ion-infinite-scroll>
+</ion-content> -->

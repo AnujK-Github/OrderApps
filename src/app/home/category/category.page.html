@@ -1,0 +1,54 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Category </ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="search-sharp" slot="icon-only"></ion-icon>
+      </ion-button>
+      <ion-button>
+        <ion-icon name="mic-sharp" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div>
+  
+    <ion-row>
+      <ion-col class="detail_div" size="3" *ngFor="let category of categories"  (click)="getCategoryProducts(category.id)">
+        <!-- <img [src]="item.img"> -->
+        <img src="{{baseUrl}}Content/products/{{category.thumbnailUrl}}"
+        onerror="this.onerror=null;this.src='/assets/NoImage.jpg';"/>
+        <ion-label>{{category.name}}</ion-label>
+      </ion-col>
+    </ion-row>  
+</div>  
+
+</ion-content>
+
+
+<ion-content>
+  <!-- <ion-grid>
+
+    <ion-row class="ion-text-center">
+      <ion-col size="6" *ngFor="let category of categories">
+        <img src="{{baseUrl}}Content/products/{{category.thumbnailUrl}}"
+        onerror="this.onerror=null;this.src='/assets/NoImage.jpg';" (click)="getCategoryProducts(category.id)"/>
+
+        <p>{{category.name}}</p>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid> -->
+
+  <!-- <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content
+            loadingSpinner="bubbles"
+            loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+</ion-infinite-scroll> -->
+</ion-content>

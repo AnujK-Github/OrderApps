@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Order Details</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home/orders"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card >
+    <ion-row>     
+      <ion-col size="6">Description</ion-col>
+      <ion-col>UOM</ion-col>      
+      <ion-col>Qty</ion-col>
+      <ion-col>Price</ion-col>
+      <ion-col>Total</ion-col>
+    </ion-row>
+</ion-card>
+
+  <ion-grid *ngFor="let detail of orderDetails">
+    <ion-row>
+        <!-- <ion-col class="center">{{detail.productId}}</ion-col> -->
+        <ion-col size="6">{{detail.productName}}</ion-col>      
+        <ion-col >{{detail.product?.unit?.name}}</ion-col>    
+        <ion-col class="center">{{detail.quantity}}</ion-col>
+        <ion-col class="center">${{detail.price  | number:'1.2-2'}}</ion-col>
+        <ion-col class="right">${{detail.quantity * detail.price | number:'1.2-2'}}</ion-col>
+    </ion-row>
+  </ion-grid>
+  
+  <ion-card class="total">
+    <ion-row>
+      <ion-col></ion-col>
+      <ion-col size="3">Total items:</ion-col>
+      <ion-col>{{totalItems}}</ion-col>
+      <ion-col></ion-col>
+      <ion-col></ion-col>
+      <ion-col size="4">TOTAL AMOUNT: ${{total| number:'1.2-2'}}</ion-col>
+    </ion-row>
+  </ion-card>
+
+
+  
+    <!-- <ion-card  *ngFor="let orderItem of orderDetails">
+      <ion-row >
+        <ion-col size="6" >
+          <ion-row> Product Id : &nbsp; {{orderItem.productId}}</ion-row>
+          <ion-row>Product Name : &nbsp; {{orderItem.productName}}</ion-row>
+          <ion-row>Price : &nbsp;  {{orderItem.price}}</ion-row>
+          <ion-row> Quantity : &nbsp;{{orderItem.quantity}}</ion-row>
+          <ion-row> Total :&nbsp;{{orderItem.quantity * orderItem.price}}</ion-row>
+        </ion-col>
+        <ion-col size="6">
+          <ion-img src="{{orderItem.imageUrl}}"></ion-img>
+        </ion-col>
+      </ion-row>
+    </ion-card> -->
+    
+</ion-content>
+

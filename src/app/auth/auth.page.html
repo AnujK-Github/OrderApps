@@ -1,0 +1,42 @@
+<ion-header>
+	
+	<ion-toolbar>
+		<ion-title>
+			<p>TechNow Soft</p>
+		</ion-title>
+		
+	  <!-- <ion-title>{{ isLogin ? 'Login' : 'Signup' }}</ion-title> -->
+	  <!-- <ion-title>{{'TechNow Soft'}}</ion-title> -->
+	</ion-toolbar>
+	
+  </ion-header>
+
+  <!-- <div class="vertical-center">
+	<div class="center">
+	  <ion-img src="/assets/logo.jpeg" class="ion-align-self-start"></ion-img>
+	</div>   
+  </div> -->
+<ion-content>
+	
+	<ion-img src="/assets/logo.jpeg"></ion-img>
+
+		<p class="ion-p">Amman House Hold</p>
+
+	<!-- <div class="bg_image main_content_div" [style.backgroundImage]="'url(/assets/back2.jpg)'"> -->
+		<div>
+	  <div class="overlay">
+		<div>
+			
+			<ion-input size="6"  type="text" placeholder="Username"></ion-input>
+				  
+		  <ion-input type="password" placeholder="Password"></ion-input>
+		  <ion-button expand="block"  (click)="onLogin()">
+			Login
+		  </ion-button>
+		  <!-- <ion-label class="bottom_lbl" (click)="onLogin()">
+			Not a member yet? Register
+		  </ion-label> -->
+		</div>
+	  </div>
+	</div>
+  </ion-content>
